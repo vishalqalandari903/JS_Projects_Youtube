@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #0086ff;
+  --main-hover-color: #0079e2;
+  --fill-color: #181c37;
+  --body-color: #13152a;
+  --count-greater-color: rgb(0, 210, 0);
+  --count-smaller-color: red;
+}
+
+body {
+  background-color: var(--body-color);
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  background-color: var(--fill-color);
+  color: white;
+  padding: 30px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 0 10px 1px #13162a54;
+  position: relative;
+}
+
+.counter::before {
+  content: "";
+  position: absolute;
+  height: 120%;
+  width: 80%;
+  background-color: var(--main-color);
+  z-index: -10;
+  border-radius: 10px;
+}
+
+.counter .content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.counter .count-value {
+  font-size: 60px;
+  text-align: center;
+  font-weight: 700;
+}
+.counter .count-value.greater {
+  color: var(--count-greater-color);
+}
+.counter .count-value.smaller {
+  color: var(--count-smaller-color);
+}
+
+.counter .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.counter .actions .action__btn {
+  border: none;
+  padding: 8px 15px;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid var(--main-color);
+  transition: all 0.2s;
+  background-color: var(--main-color);
+}
+
+.counter .actions .background_animation_btn {
+  background-color: var(--main-color);
+}
+.counter .actions .background_animation_btn:hover {
+  background-color: transparent;
+  color: var(--main-color);
+}
+
+.counter .actions .border_animation_btn {
+  background-color: transparent;
+  color: var(--main-color);
+  box-sizing: border-box;
+}
+.counter .actions .border_animation_btn:hover {
+  background-color: var(--main-color);
+  color: var(--main-inverted-hover-color);
+}
