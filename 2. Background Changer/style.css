@@ -168,7 +168,7 @@ button.save_color_button:hover,
 
 #edit_color_form {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   gap: 10px;
 }
 
