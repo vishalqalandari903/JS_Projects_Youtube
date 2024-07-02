@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Background Color Changer</title>
+
+    <!-- Fontawesome Icons Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/regular.min.css"
+      integrity="sha512-KYEnM30Gjf5tMbgsrQJsR0FSpufP9S4EiAYi168MvTjK6E83x3r6PTvLPlXYX350/doBXmTFUEnJr/nCsDovuw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="body">
+      <div class="floating-line">
+        <div class="floating_colors">
+          <div class="color color1"></div>
+          <div class="color color2"></div>
+          <div class="color color3"></div>
+          <div class="color color4"></div>
+          <div class="color color5"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h1 class="title">Background Settings</h1>
+      <form action="" id="edit_color_form">
+        <input type="color" name="" id="color_select_input" />
+        <button type="button" id="hex_code_button">
+          <span class="code">#c21919</span>
+          <i class="fa-copy copy_hex_icon fa-regular"></i>
+        </button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
