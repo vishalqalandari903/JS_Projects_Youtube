@@ -250,8 +250,8 @@ button.save_color_button:hover,
   flex-wrap: wrap;
 }
 .floating_colors .color {
-  height: 30px;
-  width: 50px;
+  height: 60px;
+  width: 100px;
   background-color: white;
   box-shadow: 0 0 10px 1px #d0d0d0;
   border-radius: 50px;
