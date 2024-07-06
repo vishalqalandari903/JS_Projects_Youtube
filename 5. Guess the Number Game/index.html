@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Guess The Number</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="header">Guess Number b/w 1 and 100</div>
+        <div class="status">Let's start the Game</div>
+        <div class="main">
+          <form class="checkGuessForm">
+            <input
+              type="number"
+              min="0"
+              max="100"
+              class="checkGuessInput"
+              required
+            />
+            <input
+              type="submit"
+              value="Check"
+              class="checkGuessButton actionButton"
+            />
+          </form>
+          <button class="resetButton actionButton">Reset</button>
+        </div>
+        <div class="footer">Chances Left: <span class="guesses">8</span></div>
+      </div>
+    </div>
+  </body>
+</html>

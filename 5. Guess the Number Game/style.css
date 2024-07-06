@@ -1,0 +1,100 @@
+:root {
+  --color-body-primary: #13152a;
+  --color-light-primary: #0282f8;
+  --color-light-primary-hover: #006bce;
+  --color-container-primary: #181c37;
+  --color-text-base: #fff;
+  --color-status: rgb(0, 204, 255);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-body-primary);
+  padding: 10px;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--color-container-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  color: var(--color-text-base);
+  font-family: monospace;
+  font-size: 20px;
+}
+.container .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.container .header {
+  width: 100%;
+}
+.container .status {
+  color: var(--color-status);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.container .content .main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.container .main .checkGuessForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.container .main .checkGuessForm .checkGuessInput {
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 20px;
+  color: var(--color-text-base);
+  background-color: var(--color-body-primary);
+  font-family: monospace;
+  height: 100%;
+  flex: 1;
+}
+.container .main .actionButton {
+  height: 100%;
+  background-color: var(--color-light-primary);
+  color: white;
+  font-size: 20px;
+  border: 1px solid var(--color-light-primary);
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+}
+.container .main .actionButton:hover {
+  background-color: var(--color-light-primary-hover);
+}
+.container .main .resetButton {
+  width: 80%;
+}
+
+.container .footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
