@@ -1,0 +1,52 @@
+:root {
+  --color-text-base: #000;
+  --color-body-background: #fff;
+}
+
+html.dark {
+  --color-text-base: #fff;
+  --color-body-background: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color-body-background);
+  color: var(--color-text-base);
+}
+
+header {
+  box-shadow: 0 0 10px 1px gray;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  font-size: 30px;
+  background-color: var(--color-body-background);
+}
+
+header .iconBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  font-size: 25px;
+  border-radius: 50%;
+  color: var(--color-text-base);
+}
+header .iconBtn:hover {
+  background-color: rgba(193, 193, 193, 0.4);
+}
