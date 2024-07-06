@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Calculator</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <div class="displayScreen">
+          <input type="text" id="displayInput" readonly />
+        </div>
+        <table class="buttonsTable">
+          <tr>
+            <td>
+              <button class="deleteButton calculatorButton topRowButton">
+                C
+              </button>
+            </td>
+            <td>
+              <button
+                class="mathNumber mathOperator calculatorButton topRowButton"
+                value="+"
+              >
+                +
+              </button>
+            </td>
+            <td>
+              <button
+                class="mathNumber mathOperator calculatorButton topRowButton"
+                value="%"
+              >
+                %
+              </button>
+            </td>
+            <td>
+              <button
+                class="mathNumber mathOperator calculatorButton"
+                value="/"
+              >
+                /
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="mathNumber calculatorButton" value="7">7</button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value="8">8</button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value="9">9</button>
+            </td>
+            <td>
+              <button
+                class="mathNumber mathOperator calculatorButton"
+                value="*"
+              >
+                x
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="mathNumber calculatorButton" value="4">4</button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value="5">5</button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value="6">6</button>
+            </td>
+            <td>
+              <button
+                class="mathNumber mathOperator calculatorButton"
+                value="-"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="mathNumber calculatorButton" value="1">1</button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value="2">2</button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value="3">3</button>
+            </td>
+            <td>
+              <button
+                class="mathNumber mathOperator calculatorButton"
+                value="+"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button
+                class="mathNumber calculatorButton doubleColButton"
+                value="0"
+              >
+                0
+              </button>
+            </td>
+            <td>
+              <button class="mathNumber calculatorButton" value=".">.</button>
+            </td>
+            <td><button class="equalOperator calculatorButton">=</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
