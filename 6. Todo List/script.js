@@ -2,11 +2,22 @@
 const todosContainer = document.querySelector(".todosContainer");
 const todoForm = document.querySelector(".todoForm");
 const todoFormInput = document.querySelector(".todoFormInput");
-const todoForButton = document.querySelector(".todoFormButton");
+const todoFormButton = document.querySelector(".todoFormButton");
+
 // localStorage.removeItem("todos");
 
-let todos = getTodosFromLocalStorage();
+// localStorage.setItem(
+//   "todos",
+//   JSON.stringify([
+//     {
+//       id: 1,
+//       todo: "vishal",
+//       completed: true,
+//     },
+//   ])
+// );
 
+let todos = getTodosFromLocalStorage();
 todos.forEach((todo) => {
   createTodoElement(todo);
 });
@@ -14,162 +25,177 @@ todos.forEach((todo) => {
 todoForm.addEventListener("submit", addTodo);
 
 function getTodosFromLocalStorage() {
-  let initialState = [];
-  let todosData = JSON.parse(localStorage.getItem("todos")) ?? initialState;
-
+  let todosData = JSON.parse(localStorage.getItem("todos")) ?? [];
   return todosData;
 }
 
 function addTodo(e) {
   e.preventDefault();
 
-  let todoText = todoFormInput.value;
+  let todoValue = todoFormInput.value;
+  if (todoValue.trim() !== "") {
+    if (!todos.some((savedTodo) => savedTodo.todo == todoValue)) {
+      let todoId = todos[todos.length - 1].id + 1;
 
-  if (!todos.some((todo) => todo.todo == todoText)) {
-    let todoId = todos[todos.length - 1].id + 1;
+      let todo = {
+        todo: todoValue,
+        id: todoId,
+        completed: false,
+      };
 
-    let todo = {
-      todo: todoText,
-      id: todoId,
-      completed: false,
-    };
+      todos.push(todo);
+      localStorage.setItem("todos", JSON.stringify(todos));
 
-    todos.push(todo);
-    localStorage.setItem("todos", JSON.stringify(todos));
+      createTodoElement(todo);
 
-    createTodoElement(todo);
-
-    todoFormInput.value = "";
+      todoFormInput.value = "";
+    } else {
+      // TODO : show error on duplicate add todo
+      console.log("cannot add duplicate todo");
+    }
   } else {
-    // TODO : Show error on duplicate
+    // TODO : show error on empty add todo
+    console.log("cannot add empty todo");
   }
 }
 
-function deleteTodo(e, todoDiv, todo) {
+function deleteTodo(todo, todoDiv) {
   todos = todos.filter((savedTodo) => savedTodo.id !== todo.id);
   localStorage.setItem("todos", JSON.stringify(todos));
 
   todosContainer.removeChild(todoDiv);
 }
 
-function completeTodo(e, todoDiv, todoCheckbox, todoTextInput, todo) {
+function completeTodo(todo, todoDiv) {
+  let checkboxInput = todoDiv.querySelector(".todoCheckbox");
   let currentTodoIndex = todos.findIndex(
     (savedTodo) => savedTodo.id == todo.id
   );
+  todos[currentTodoIndex].completed = checkboxInput.checked;
+  localStorage.setItem("todos", JSON.stringify(todos));
 
-  if (todoCheckbox.checked) {
-    todoDiv.classList.add("completed");
+  if (checkboxInput.checked) {
+    let isTodoSaved = saveTodo(todo, todoDiv);
+    if (isTodoSaved) {
+      todoDiv.classList.add("completed");
+    } else {
+      todoDiv.classList.remove("completed");
+      checkboxInput.checked = false;
+    }
   } else {
     todoDiv.classList.remove("completed");
   }
-
-  todoTextInput.classList.remove("editable");
-  todoTextInput.setAttribute("readOnly", true);
-
-  todoDiv.querySelector(".editTodoButton").innerHTML =
-    '<i class="fa-solid fa-pen icon"></i>';
-  if (todoTextInput.value == "") {
-    todoTextInput.value = todos[currentTodoIndex].todo;
-  } else {
-    if (todos.some((savedTodo) => savedTodo.todo == todo.todo)) {
-      todoTextInput.value = todos[currentTodoIndex].todo;
-    }
-  }
-
-  todos[currentTodoIndex].completed = todoCheckbox.checked;
-
-  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-function editTodo(e, todoTextInput, todoEditButton) {
-  todoTextInput.removeAttribute("readOnly");
+function editTodo(todo, todoDiv) {
+  let todoTextInput = todoDiv.querySelector(".todoText");
+  let editTodoButton = todoDiv.querySelector(".editTodoButton");
+
   todoTextInput.classList.add("editable");
-  todoTextInput.focus();
+  todoTextInput.removeAttribute("readOnly");
 
-  todoEditButton.innerHTML = '<i class="fa-solid fa-folder icon"></i>';
+  editTodoButton.innerHTML = '<i class="fa-solid fa-folder icon"></i>';
 }
 
-function saveTodo(e, todoTextInput, todoEditButton, todo) {
-  if (todoTextInput.value !== "") {
+function saveTodo(todo, todoDiv) {
+  let todoTextInput = todoDiv.querySelector(".todoText");
+  let editTodoButton = todoDiv.querySelector(".editTodoButton");
+
+  if (todoTextInput.value.trim() !== "") {
     if (
       !todos.some(
         (savedTodo) =>
-          savedTodo.todo == todoTextInput.value && saveTodo.id == todo.id
+          savedTodo.todo == todoTextInput.value && savedTodo.id !== todo.id
       )
     ) {
-      todoTextInput.classList.remove("editable");
-      todoEditButton.innerHTML = '<i class="fa-solid fa-pen icon"></i>';
-      todoTextInput.setAttribute("readOnly", true);
-
       let currentTodoIndex = todos.findIndex(
-        (savedTodo) => savedTodo.id == todo.id
+        (savedTodo) => savedTodo.id === todo.id
       );
       todos[currentTodoIndex].todo = todoTextInput.value;
+
       localStorage.setItem("todos", JSON.stringify(todos));
+
+      todoTextInput.classList.remove("editable");
+      todoTextInput.setAttribute("readOnly", true);
+      editTodoButton.innerHTML = '<i class="fa-solid fa-pen icon"></i>';
+
+      return true;
     } else {
-      // TODO : Show error on duplicate edit
+      // TODO : show error on duplicate edit
+      console.log("found duplicate on edit");
+      return false;
     }
   } else {
-    // TODO : Show error on empty edit
+    // TODO : show error on empty edit
+    console.log("cannot empty on edit");
+    return false;
   }
 }
 
 function createTodoElement(todo) {
-  const todoDiv = document.createElement("div");
+  let todoDiv = document.createElement("div");
   todoDiv.className = `todo ${todo.completed ? "completed" : ""}`;
 
-  const todoCheckboxDiv = document.createElement("div");
-  todoCheckboxDiv.className = "checkbox-wrapper-15";
+  let checkboxDiv = document.createElement("div");
+  checkboxDiv.className = "checkbox-wrapper-15";
 
-  const todoCheckboxInput = document.createElement("input");
-  todoCheckboxInput.className = "inp-cbx todoCheckbox";
-  todoCheckboxInput.id = `cbx-${todo.id}`;
-  todoCheckboxInput.type = "checkbox";
-  todoCheckboxInput.checked = todo.completed;
+  let checkboxInput = document.createElement("input");
+  checkboxInput.type = "checkbox";
+  checkboxInput.className = "inp-cbx todoCheckbox";
+  checkboxInput.id = `cbx-${todo.id}`;
+  checkboxInput.checked = todo.completed;
 
-  todoCheckboxInput.addEventListener("change", (e) => {
-    completeTodo(e, todoDiv, todoCheckboxInput, todoTextInput, todo);
+  checkboxInput.addEventListener("change", (e) => {
+    completeTodo(todo, todoDiv);
   });
 
-  const todoCheckboxLabel = document.createElement("label");
-  todoCheckboxLabel.className = "cbx";
-  todoCheckboxLabel.setAttribute("for", `cbx-${todo.id}`);
+  let checkboxLabel = document.createElement("label");
+  checkboxLabel.className = "cbx";
+  checkboxLabel.setAttribute("for", `cbx-${todo.id}`);
+  checkboxLabel.innerHTML =
+    '<span><svg width="12px" height="9px" viewbox="0 0 12 9"><polyline points="1 5 4 8 11 1"></polyline></svg></span>';
 
-  todoCheckboxLabel.innerHTML =
-    '<span><svg width="12px" height="9px" viewbox="0 0 12 9"> <polyline points="1 5 4 8 11 1"></polyline></svg></span>';
+  checkboxDiv.appendChild(checkboxInput);
+  checkboxDiv.appendChild(checkboxLabel);
 
-  todoCheckboxDiv.appendChild(todoCheckboxInput);
-  todoCheckboxDiv.appendChild(todoCheckboxLabel);
-
-  const todoTextInput = document.createElement("input");
-  todoTextInput.value = todo.todo;
+  let todoTextInput = document.createElement("input");
   todoTextInput.className = "todoText";
+  todoTextInput.value = todo.todo;
   todoTextInput.setAttribute("readOnly", true);
 
-  const todoEditButton = document.createElement("button");
-  todoEditButton.className = "editTodoButton todoActionButton";
-  todoEditButton.innerHTML = '<i class="fa-solid fa-pen icon"></i>';
+  let editTodoButton = document.createElement("button");
+  editTodoButton.className = "todoActionButton editTodoButton";
+  editTodoButton.innerHTML = '<i class="fa-solid fa-pen icon"></i>';
 
-  todoEditButton.addEventListener("click", (e) => {
-    if (todoTextInput.classList.contains("editable")) {
-      saveTodo(e, todoTextInput, todoEditButton, todo);
-    } else {
-      editTodo(e, todoTextInput, todoEditButton);
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      if (document.activeElement === todoTextInput) {
+        saveTodo(todo, todoDiv);
+      }
     }
   });
 
-  const todoDeleteButton = document.createElement("button");
-  todoDeleteButton.className = "deleteTodoButton todoActionButton";
-  todoDeleteButton.innerHTML = '<i class="fa-solid fa-trash icon"></i>';
-
-  todoDeleteButton.addEventListener("click", (e) => {
-    deleteTodo(e, todoDiv, todo);
+  editTodoButton.addEventListener("click", (e) => {
+    editTodoButton.blur();
+    if (todoTextInput.classList.contains("editable")) {
+      saveTodo(todo, todoDiv);
+    } else {
+      editTodo(todo, todoDiv);
+    }
   });
 
-  todoDiv.appendChild(todoCheckboxDiv);
+  let deleteTodoButton = document.createElement("button");
+  deleteTodoButton.className = "todoActionButton deleteTodoButton";
+  deleteTodoButton.innerHTML = '<i class="fa-solid fa-trash icon"></i>';
+
+  deleteTodoButton.addEventListener("click", (e) => {
+    deleteTodo(todo, todoDiv);
+  });
+
+  todoDiv.appendChild(checkboxDiv);
   todoDiv.appendChild(todoTextInput);
-  todoDiv.appendChild(todoEditButton);
-  todoDiv.appendChild(todoDeleteButton);
+  todoDiv.appendChild(editTodoButton);
+  todoDiv.appendChild(deleteTodoButton);
 
   todosContainer.prepend(todoDiv);
 }

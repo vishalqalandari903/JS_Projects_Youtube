@@ -148,6 +148,9 @@ body {
 .todosContainer .todo .deleteTodoButton .icon {
   color: red;
 }
+/* .todosContainer .todo .duplicateTodoButton .icon {
+  color: rgb(0, 80, 178);
+} */
 
 .checkbox-wrapper-15 .cbx {
   -webkit-user-select: none;
