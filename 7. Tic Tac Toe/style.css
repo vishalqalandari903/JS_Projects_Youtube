@@ -1,0 +1,119 @@
+:root {
+  --color-main-blue: aqua;
+  --color-main-yellow: rgb(255, 247, 0);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #192a32;
+}
+
+span {
+  line-height: 15px;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container .status {
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.container .tic-tac-toe .boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.container .tic-tac-toe .boxes .box {
+  height: 80px;
+  width: 80px;
+  background-color: #1f3540;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  align-items: center;
+  font-size: 5em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 5px 0 0 #000;
+  color: white;
+}
+.container .tic-tac-toe.x-mark .boxes .box:not(.done):hover::before {
+  content: "x";
+}
+.container .tic-tac-toe.o-mark .boxes .box:not(.done):hover::before {
+  content: "o";
+}
+
+.container .tic-tac-toe .boxes .box.x {
+  color: var(--color-main-blue);
+}
+.container .tic-tac-toe .boxes .box.o {
+  color: var(--color-main-yellow);
+}
+
+.container .actionButtons {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.container .actionButtons .actionButton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 3px 0 0 #000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.container .actionButtons .actionButton span {
+  font-weight: bold;
+}
+
+.container .actionButtons .refresh__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 3px 0 0 #000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-main-blue);
+  cursor: pointer;
+}
+
+.container .actionButtons .yellow__button {
+  background-color: var(--color-main-yellow);
+}
+.container .actionButtons .blue__button {
+  background-color: var(--color-main-blue);
+}
