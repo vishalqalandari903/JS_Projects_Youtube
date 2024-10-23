@@ -29,3 +29,7 @@
 # 8. Stopwatch
 
 <img src="./assets/projects-images/8. Stopwatch.png" alt="Project Logo" width="500" height="auto">
+
+# 9. Simple Image Slider
+
+<img src="./assets/projects-images/9.Simple Image Slider.png" alt="Project Logo" width="500" height="auto">
