@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RGB Slider</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="slider">
+      <div class="r slide">
+        <span>R</span>
+        <input type="range" class="r_slide" min="0" max="255" />
+      </div>
+      <div class="g slide">
+        <span>G</span>
+        <input type="range" class="g_slide" min="0" max="255" />
+      </div>
+      <div class="b slide">
+        <span>B</span>
+        <input type="range" class="b_slide" min="0" max="255" />
+      </div>
+
+      <div class="color">
+        <div class="color_box"></div>
+        <span class="color_code"></span>
+        <button class="copy_code_btn">Copy</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
