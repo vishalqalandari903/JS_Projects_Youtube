@@ -33,3 +33,7 @@
 # 9. Simple Image Slider
 
 <img src="./assets/projects-images/9.Simple Image Slider.png" alt="Project Logo" width="500" height="auto">
+
+# 10. RGB Slider
+
+<img src="./assets/projects-images/10. rgb slider.png" alt="Project Logo" width="500" height="auto">
