@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #13152a;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 2px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ageForm .birth_date {
+  border: none;
+  background-color: rgba(128, 128, 128, 0.3);
+  padding: 4px 5px;
+  border-radius: 2px;
+}
+
+.ageForm .submit_button {
+  background-color: #0060fa;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+}
+.ageForm .submit_button:hover {
+  background-color: #0057e4;
+}
+.ageForm .submit_button:active {
+  background-color: #004dc8;
+}
