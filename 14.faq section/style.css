@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(12 134 255);
+}
+
+section.faq_section {
+  width: 100%;
+  padding: 30px 25px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.faq_section .content {
+  width: 600px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq_section .title {
+  font-family: monospace;
+  font-size: 30px;
+  color: white;
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq .accordian {
+  background-color: rgba(128, 128, 128, 0.3);
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid rgb(180, 180, 180);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: white;
+  color: black;
+  box-shadow: 1px 1px 10px rgb(12 12 12 / 23%);
+}
+.faq .accordian .question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+  cursor: pointer;
+  font-family: revert;
+  font-size: medium;
+}
+
+.faq .accordian .answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.faq .accordian .icon {
+  transition: transform 0.3s;
+}
+
+.faq .accordian.active .icon {
+  transform: rotate(180deg);
+}
+
+.faq .accordian.active .answer {
+  margin-top: 10px;
+}
